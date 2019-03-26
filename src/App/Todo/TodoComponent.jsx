@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class TodoComponent extends React.Component {
 	static propTypes = {
 		toggleCompleted: PropTypes.func.isRequired,
-		id: PropTypes.number.isRequired,
+		id: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired,
 		isCompleted: PropTypes.bool.isRequired,
 	}
