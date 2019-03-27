@@ -3,7 +3,6 @@ import { map } from 'lodash-es';
 
 import TodoList from './TodoList/TodoListComponent';
 import AddTodo from './AddTodo/AddTodoComponent';
-import GlobalStyle from '../assets/styles/global';
 
 import uuid from 'uuid';
 
@@ -55,7 +54,6 @@ class AppComponent extends React.Component {
 	render() {
 		return (
 			<div>
-				<GlobalStyle />
 				<TodoList
 					todos={this.state.todos}
 					toggleCompleted={this.toggleCompleted}
