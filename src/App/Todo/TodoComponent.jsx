@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Todo_li } from './TodoStyles';
 class TodoComponent extends React.Component {
 	static propTypes = {
 		toggleCompleted: PropTypes.func.isRequired,
@@ -24,14 +25,14 @@ class TodoComponent extends React.Component {
 		const { title, isCompleted } = this.props;
 
 		return (
-			<li>
+			<Todo_li isCompleted={isCompleted}>
 				<input
 					type="checkbox"
 					checked={isCompleted}
 					onChange={this.handleChange}
 				/>
 				{title}
-			</li>
+			</Todo_li>
 		);
 	}
 }

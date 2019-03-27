@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map } from 'lodash-es';
 
 import Todo from '../Todo/TodoComponent';
+import { TodoList_ul } from './TodoListStyles';
+
+import { map } from 'lodash-es';
 
 class TodoListComponent extends React.Component {
 	static propTypes = {
@@ -14,7 +16,7 @@ class TodoListComponent extends React.Component {
 		const { todos, toggleCompleted } = this.props;
 
 		return (
-			<ul>
+			<TodoList_ul>
 				{map(todos, (todo) => (
 					<Todo
 						key={todo.id}
@@ -22,7 +24,7 @@ class TodoListComponent extends React.Component {
 						toggleCompleted={toggleCompleted}
 					/>
 				))}
-			</ul>
+			</TodoList_ul>
 		);
 	}
 }
