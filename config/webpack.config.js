@@ -7,6 +7,10 @@ module.exports = {
 
 	entry: './src/index.jsx',
 
+	devServer: {
+		port: 8080,
+	},
+
 	devtool: 'source-map',
 
 	resolve: {
