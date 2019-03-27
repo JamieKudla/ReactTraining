@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 
 import GlobalStyles from './assets/styles/global';
-import App from './App/AppComponent';
+import App from './App/AppContainer';
 
 const MainComponent = ({ store }) => (
 	<Fragment>

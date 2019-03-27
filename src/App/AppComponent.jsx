@@ -1,5 +1,5 @@
 import React from 'react';
-import { map } from 'lodash-es';
+import PropTypes from 'prop-types';
 
 import TodoList from './TodoList/TodoListComponent';
 import AddTodo from './AddTodo/AddTodoComponent';
@@ -7,6 +7,14 @@ import AddTodo from './AddTodo/AddTodoComponent';
 import uuid from 'uuid';
 
 class AppComponent extends React.Component {
+	static propTypes = {
+		todos: PropTypes.array,
+		isLoading: PropTypes.bool,
+		addTodo: PropTypes.func,
+		toggleCompleted: PropTypes.func,
+		fetchTodos: PropTypes.func,
+	}
+
 	constructor() {
 		super();
 
@@ -18,20 +26,13 @@ class AppComponent extends React.Component {
 		this.todoAdd = this.todoAdd.bind(this);
 	}
 
-	// Toggles the isCompleted state for a todo item.
+	componentDidMount() {
+		this.props.fetchTodos();
+	}
+
+	// Toggles the completed state for a todo item.
 	toggleCompleted(todoId) {
-		const { todos } = this.state;
-		const updatedTodos = map(todos, (todo) => {
-			if (todo.id === todoId) {
-				todo.isCompleted = !todo.isCompleted;
-			}
-
-			return todo;
-		});
-
-		this.setState({
-			todos: updatedTodos,
-		});
+		this.props.toggleCompleted(todoId);
 	}
 
 	// Add a todo item
@@ -39,23 +40,18 @@ class AppComponent extends React.Component {
 		const newTodo = {
 			id: uuid.v4(),
 			title: todoText,
-			isCompleted: false,
+			completed: false,
 		};
-		const updatedTodos = [
-			...this.state.todos,
-			newTodo,
-		];
 
-		this.setState({
-			todos: updatedTodos,
-		});
+		this.props.addTodo(newTodo);
 	}
 
 	render() {
 		return (
 			<div>
+				{ this.props.isLoading ? 'LOADING...' : null }
 				<TodoList
-					todos={this.state.todos}
+					todos={this.props.todos}
 					toggleCompleted={this.toggleCompleted}
 				/>
 				<AddTodo todoAdd={this.todoAdd} />

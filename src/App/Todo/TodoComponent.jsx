@@ -5,9 +5,12 @@ import { Todo_li } from './TodoStyles';
 class TodoComponent extends React.Component {
 	static propTypes = {
 		toggleCompleted: PropTypes.func.isRequired,
-		id: PropTypes.string.isRequired,
+		id: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+		]).isRequired,
 		title: PropTypes.string.isRequired,
-		isCompleted: PropTypes.bool.isRequired,
+		completed: PropTypes.bool.isRequired,
 	}
 
 	constructor() {
@@ -22,13 +25,13 @@ class TodoComponent extends React.Component {
 	}
 
 	render() {
-		const { title, isCompleted } = this.props;
+		const { title, completed } = this.props;
 
 		return (
-			<Todo_li isCompleted={isCompleted}>
+			<Todo_li completed={completed}>
 				<input
 					type="checkbox"
-					checked={isCompleted}
+					checked={completed}
 					onChange={this.handleChange}
 				/>
 				{title}
