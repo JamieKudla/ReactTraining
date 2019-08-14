@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
@@ -14,14 +13,10 @@ module.exports = {
 	},
 
 	module: {
-		strictExportPresence: true,
 		rules: [
 			{
 				test: /\.jsx?$/,
-				use: [
-					'babel-loader',
-					'stylelint-custom-processor-loader',
-				],
+				use: 'babel-loader',
 				exclude: /node_modules/,
 			},
 		],
@@ -35,17 +30,7 @@ module.exports = {
 			},
 		),
 
-		// Linter for styled-components
-		new StyleLintPlugin({}),
-
 		// enable HMR globally
 		new webpack.HotModuleReplacementPlugin(),
-
-		// prints more readable module names in the browser console on HMR updates
-		new webpack.NamedModulesPlugin(),
 	],
-
-	performance: {
-		hints: false,
-	},
 };
