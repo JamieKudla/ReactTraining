@@ -23,7 +23,7 @@ class AppComponent extends React.Component {
 		const { todos } = this.state;
 		const updatedTodos = map(todos, (todo) => {
 			if (todo.id === todoId) {
-				todo.isCompleted = !todo.isCompleted;
+				todo.completed = !todo.completed;
 			}
 
 			return todo;
@@ -39,7 +39,7 @@ class AppComponent extends React.Component {
 		const newTodo = {
 			id: uuid.v4(),
 			title: todoText,
-			isCompleted: false,
+			completed: false,
 		};
 		const updatedTodos = [
 			...this.state.todos,

@@ -8,7 +8,7 @@ export const Todo_li = styled.li`
 		border-bottom: 1px solid black;
 	}
 
-	${({ isCompleted }) => isCompleted && `
+	${({ completed }) => completed && `
 		text-decoration: line-through;
 		color: rgba(0, 0, 0, 50);
 	`}

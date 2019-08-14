@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import GlobalStyles from './assets/styles/global';
 import App from './App/AppComponent';
 
-const MainComponent = ({ store }) => (
+const RootComponent = ({ store }) => (
 	<Fragment>
 		<GlobalStyles />
 		<Provider store={store}>
@@ -14,8 +14,8 @@ const MainComponent = ({ store }) => (
 	</Fragment>
 );
 
-MainComponent.propTypes = {
+RootComponent.propTypes = {
 	store: PropTypes.object,
 };
 
-export default MainComponent;
+export default RootComponent;

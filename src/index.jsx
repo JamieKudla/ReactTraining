@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
 
 import rootReducer from './store';
-import Main from './MainComponent';
+import Root from './RootComponent';
 
 const composeEnhancers = composeWithDevTools({});
 const store = createStore(
@@ -13,6 +13,6 @@ const store = createStore(
 	{},
 	composeEnhancers(applyMiddleware(ReduxThunk)),
 );
-const appRoot = document.getElementById('appRoot');
+const appRoot = document.getElementById('app-root');
 
-ReactDOM.render(<Main store={store} />, appRoot);
+ReactDOM.render(<Root store={store} />, appRoot);

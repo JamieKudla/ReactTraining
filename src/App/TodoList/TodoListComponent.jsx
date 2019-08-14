@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Todo from '../Todo/TodoComponent';
+import Todo from './Todo/TodoComponent';
 import { TodoList_ul } from './TodoListStyles';
 
 import { map } from 'lodash-es';
