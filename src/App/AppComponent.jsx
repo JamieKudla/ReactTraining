@@ -1,5 +1,5 @@
 import React from 'react';
-import { map } from 'lodash-es';
+import PropTypes from 'prop-types';
 
 import TodoList from './TodoList/TodoListComponent';
 import AddTodo from './AddTodo/AddTodoComponent';
@@ -7,31 +7,15 @@ import AddTodo from './AddTodo/AddTodoComponent';
 import uuid from 'uuid';
 
 class AppComponent extends React.Component {
+	static propTypes = {
+		toggleCompleted: PropTypes.func.isRequired,
+		todos: PropTypes.array.isRequired,
+	}
+
 	constructor() {
 		super();
 
-		this.state = {
-			todos: [],
-		};
-
-		this.toggleCompleted = this.toggleCompleted.bind(this);
 		this.todoAdd = this.todoAdd.bind(this);
-	}
-
-	// Toggles the isCompleted state for a todo item.
-	toggleCompleted(todoId) {
-		const { todos } = this.state;
-		const updatedTodos = map(todos, (todo) => {
-			if (todo.id === todoId) {
-				todo.completed = !todo.completed;
-			}
-
-			return todo;
-		});
-
-		this.setState({
-			todos: updatedTodos,
-		});
 	}
 
 	// Add a todo item
@@ -52,11 +36,13 @@ class AppComponent extends React.Component {
 	}
 
 	render() {
+		const { toggleCompleted, todos } = this.props;
+
 		return (
 			<div>
 				<TodoList
-					todos={this.state.todos}
-					toggleCompleted={this.toggleCompleted}
+					todos={todos}
+					toggleCompleted={toggleCompleted}
 				/>
 				<AddTodo todoAdd={this.todoAdd} />
 			</div>
