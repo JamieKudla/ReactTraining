@@ -1,23 +1,22 @@
-import { connect } from 'react-redux';
+import gql from 'graphql-tag';
 
 import App from './AppComponent';
-import todosActions from '../store/todos/todosActions';
+import { graphql } from 'react-apollo';
 
-function mapStateToProps(state) {
-	return {
-		todos: state.todos.data,
-	};
-}
+const GET_ALL_COMMENTS = gql`
+	query GetAllComments {
+		allComments {
+			id
+		}
+	}
+`;
 
-function mapDispatchToProps(dispatch) {
-	return {
-		toggleCompleted: (todoId) => dispatch(todosActions.toggleCompleted(todoId)),
-	};
-}
-
-const AppContainer = connect(
-	mapStateToProps,
-	mapDispatchToProps,
+const AppContainer = graphql(
+	GET_ALL_COMMENTS, {
+		props: ({ data: { allComments } }) => ({
+			allComments,
+		}),
+	}
 )(App);
 
 export default AppContainer;
