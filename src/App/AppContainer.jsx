@@ -1,22 +1,9 @@
-import gql from 'graphql-tag';
+// import gql from 'graphql-tag';
 
 import App from './AppComponent';
-import { graphql } from 'react-apollo';
+// import { graphql } from 'react-apollo';
+import { flowRight } from 'lodash-es';
 
-const GET_ALL_COMMENTS = gql`
-	query GetAllComments {
-		allComments {
-			id
-		}
-	}
-`;
-
-const AppContainer = graphql(
-	GET_ALL_COMMENTS, {
-		props: ({ data: { allComments } }) => ({
-			allComments,
-		}),
-	}
-)(App);
+const AppContainer = flowRight()(App);
 
 export default AppContainer;
