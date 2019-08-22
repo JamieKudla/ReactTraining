@@ -15,7 +15,7 @@ export const cache = new InMemoryCache({
 	},
 	dataIdFromObject: (object) => {
 		switch (object.__typename) {
-			case 'allComments': {
+			case 'Comment': {
 				return object.id;
 			}
 			default: {
